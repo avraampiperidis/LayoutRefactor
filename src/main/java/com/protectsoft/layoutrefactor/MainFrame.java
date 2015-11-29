@@ -123,15 +123,8 @@ public class MainFrame extends javax.swing.JFrame {
         if(dp != 0) {
             
             int opt = option.getSelectedIndex();
-            if(opt == 0) {
-                //add dp to all xml tags
+                //add dor remove dp : refactor method will decide
                 LayoutRefactor.refactor(dp, file,opt);
-            } else if(opt == 1) {
-                //remove dp from all xml tags
-                
-            } else {
-                status.setText("choose xml file");
-            }
        
         } else {
             status.setText("set dp value");
