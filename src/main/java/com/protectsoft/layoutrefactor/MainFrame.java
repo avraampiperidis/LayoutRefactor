@@ -5,12 +5,18 @@
  */
 package com.protectsoft.layoutrefactor;
 
+import java.io.File;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 /**
  *
  * @author zeron
  */
 public class MainFrame extends javax.swing.JFrame {
 
+    public static File file;
+    public static int dp = 0;
     /**
      * Creates new form MainFrame
      */
@@ -27,21 +33,34 @@ public class MainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jToggleButton1 = new javax.swing.JToggleButton();
-        jComboBox1 = new javax.swing.JComboBox();
-        jSpinner1 = new javax.swing.JSpinner();
+        openfile = new javax.swing.JButton();
+        path = new javax.swing.JLabel();
+        refactor = new javax.swing.JToggleButton();
+        option = new javax.swing.JComboBox();
+        dpvalue = new javax.swing.JSpinner();
+        status = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("select layout");
+        openfile.setText("select xml layout");
+        openfile.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                openfileMouseClicked(evt);
+            }
+        });
 
-        jLabel1.setText("path:");
+        path.setText("path:");
 
-        jToggleButton1.setText("Refactor");
+        refactor.setText("Refactor");
+        refactor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                refactorMouseClicked(evt);
+            }
+        });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Add dp to all tags", "Remove dp from all tags" }));
+        option.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Add dp to all tags", "Remove dp from all tags" }));
+
+        status.setText("status:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -51,34 +70,76 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(openfile)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel1))
-                    .addComponent(jToggleButton1)
+                        .addComponent(path))
+                    .addComponent(refactor)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(option, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(193, Short.MAX_VALUE))
+                        .addComponent(dpvalue, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(status))
+                .addContainerGap(230, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jLabel1))
+                    .addComponent(openfile)
+                    .addComponent(path))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(84, 84, 84)
-                .addComponent(jToggleButton1)
-                .addContainerGap(121, Short.MAX_VALUE))
+                    .addComponent(option, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dpvalue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(64, 64, 64)
+                .addComponent(status)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(refactor)
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void openfileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_openfileMouseClicked
+        
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setAcceptAllFileFilterUsed(false);
+        fileChooser.addChoosableFileFilter(new FileNameExtensionFilter("xml layouts", "xml")); 
+        if (fileChooser.showOpenDialog(MainFrame.this) == JFileChooser.APPROVE_OPTION) {
+            file = fileChooser.getSelectedFile();
+            path.setText(file.getAbsolutePath());
+        }
+        
+        
+    }//GEN-LAST:event_openfileMouseClicked
+
+    private void refactorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refactorMouseClicked
+        // TODO add your handling code here:
+        dp = (int) dpvalue.getValue();
+        if(file != null && file.isFile()) {
+            status.setText("");
+        if(dp != 0) {
+            
+            int opt = option.getSelectedIndex();
+            if(opt == 0) {
+                //add dp to all xml tags
+                LayoutRefactor.refactor(dp, file,opt);
+            } else if(opt == 1) {
+                //remove dp from all xml tags
+                
+            } else {
+                status.setText("choose xml file");
+            }
+       
+        } else {
+            status.setText("set dp value");
+        }
+        } else {
+            status.setText("choose xml file");
+        }
+    }//GEN-LAST:event_refactorMouseClicked
 
     /**
      * @param args the command line arguments
@@ -113,10 +174,11 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JSpinner dpvalue;
+    private javax.swing.JButton openfile;
+    private javax.swing.JComboBox option;
+    private javax.swing.JLabel path;
+    private javax.swing.JToggleButton refactor;
+    private javax.swing.JLabel status;
     // End of variables declaration//GEN-END:variables
 }
