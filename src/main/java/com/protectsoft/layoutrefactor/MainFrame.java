@@ -17,6 +17,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     public static File file;
     public static int dp = 0;
+    public static int sp = 0;
     /**
      * Creates new form MainFrame
      */
@@ -36,9 +37,11 @@ public class MainFrame extends javax.swing.JFrame {
         openfile = new javax.swing.JButton();
         path = new javax.swing.JLabel();
         refactor = new javax.swing.JToggleButton();
-        option = new javax.swing.JComboBox();
+        dpoption = new javax.swing.JComboBox();
         dpvalue = new javax.swing.JSpinner();
         status = new javax.swing.JLabel();
+        spoption = new javax.swing.JComboBox();
+        spvalue = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -58,9 +61,11 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        option.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Add dp to all tags", "Remove dp from all tags" }));
+        dpoption.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Add dp to all tags", "Remove dp from all tags" }));
 
         status.setText("status:");
+
+        spoption.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Add sp to all tags", "Remove sp from all tags" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -74,11 +79,15 @@ public class MainFrame extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(path))
                     .addComponent(refactor)
+                    .addComponent(status)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(option, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(spoption, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(dpoption, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(dpvalue, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(status))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(dpvalue, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
+                            .addComponent(spvalue))))
                 .addContainerGap(230, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -90,9 +99,13 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(path))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(option, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dpoption, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(dpvalue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(64, 64, 64)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(spoption, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(spvalue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33)
                 .addComponent(status)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(refactor)
@@ -118,17 +131,15 @@ public class MainFrame extends javax.swing.JFrame {
     private void refactorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refactorMouseClicked
         // TODO add your handling code here:
         dp = (int) dpvalue.getValue();
+        sp = (int)spvalue.getValue();
+        
         if(file != null && file.isFile()) {
             status.setText("");
-        if(dp != 0) {
-            
-            int opt = option.getSelectedIndex();
-                //add dor remove dp : refactor method will decide
-                LayoutRefactor.refactor(dp, file,opt);
+            int dpopt = dpoption.getSelectedIndex();
+            int spopt = spoption.getSelectedIndex();
+            //add dor remove dp : refactor method will decide
+            LayoutRefactor.refactor(dp,sp, file,dpopt,spopt);
        
-        } else {
-            status.setText("set dp value");
-        }
         } else {
             status.setText("choose xml file");
         }
@@ -167,11 +178,13 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox dpoption;
     private javax.swing.JSpinner dpvalue;
     private javax.swing.JButton openfile;
-    private javax.swing.JComboBox option;
     private javax.swing.JLabel path;
     private javax.swing.JToggleButton refactor;
+    private javax.swing.JComboBox spoption;
+    private javax.swing.JSpinner spvalue;
     private javax.swing.JLabel status;
     // End of variables declaration//GEN-END:variables
 }

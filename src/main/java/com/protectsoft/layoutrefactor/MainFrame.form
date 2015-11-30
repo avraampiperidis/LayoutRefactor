@@ -32,12 +32,18 @@
                       <Component id="path" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="refactor" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="option" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="dpvalue" min="-2" pref="46" max="-2" attributes="0"/>
-                  </Group>
                   <Component id="status" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="spoption" alignment="0" max="32767" attributes="0"/>
+                          <Component id="dpoption" alignment="0" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="dpvalue" pref="46" max="32767" attributes="0"/>
+                          <Component id="spvalue" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
               </Group>
               <EmptySpace pref="230" max="32767" attributes="0"/>
           </Group>
@@ -53,10 +59,15 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="option" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="dpoption" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="dpvalue" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="spoption" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="spvalue" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
               <Component id="status" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="refactor" min="-2" max="-2" attributes="0"/>
@@ -87,7 +98,7 @@
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="refactorMouseClicked"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JComboBox" name="option">
+    <Component class="javax.swing.JComboBox" name="dpoption">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="2">
@@ -103,6 +114,18 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="status:"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="spoption">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="2">
+            <StringItem index="0" value="Add sp to all tags"/>
+            <StringItem index="1" value="Remove sp from all tags"/>
+          </StringArray>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JSpinner" name="spvalue">
     </Component>
   </SubComponents>
 </Form>
