@@ -88,7 +88,7 @@ public class MainFrame extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(dpvalue, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
                             .addComponent(spvalue))))
-                .addContainerGap(230, Short.MAX_VALUE))
+                .addContainerGap(342, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -109,7 +109,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(status)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(refactor)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         pack();
@@ -139,7 +139,8 @@ public class MainFrame extends javax.swing.JFrame {
             int spopt = spoption.getSelectedIndex();
             //add dor remove dp : refactor method will decide
             LayoutRefactor.refactor(dp,sp, file,dpopt,spopt);
-       
+            status.setText("file saved at:"+LayoutRefactor.getFilePath());
+            
         } else {
             status.setText("choose xml file");
         }
