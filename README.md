@@ -6,3 +6,5 @@ set up parameters and automaticly generate xml for large and x-large layouts.<br
 At this point it has only the basic functions that can add/remove dp/sp from all tags.<br>
 <br>
 build with maven using netbeans
+<br>
+<img src="./pic/pic.png" width="300">
