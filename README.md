@@ -7,4 +7,4 @@ At this point it has only the basic functions that can add/remove dp/sp from all
 <br>
 build with maven using netbeans
 <br>
-<img src="./pic/pic.png" width="300">
+<img src="./pic/pic.png" width="350">
