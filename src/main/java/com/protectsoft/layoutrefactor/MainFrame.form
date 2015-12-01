@@ -44,8 +44,9 @@
                           <Component id="spvalue" max="32767" attributes="0"/>
                       </Group>
                   </Group>
+                  <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="342" max="32767" attributes="0"/>
+              <EmptySpace pref="49" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -67,11 +68,13 @@
                   <Component id="spoption" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="spvalue" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="37" max="32767" attributes="0"/>
               <Component id="status" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="refactor" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="29" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -126,6 +129,11 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JSpinner" name="spvalue">
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="check with # at the beginning of lines that you dont want to change.the program will delete # automatically"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

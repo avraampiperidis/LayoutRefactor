@@ -23,10 +23,15 @@ public class LayoutRefactor {
     
     static String filepath = "";
     
+    static private String regexDp = "^.*[\"][0-9]{1,3}dp[\"].*$";
+    static private String regexSp = "^.*[\"][0-9]{1,3}sp[\"].*$";
+    
+    
      public static String getFilePath() {
         return filepath;
     }
     
+     
     public static void refactor(int dp,int sp,File file,int dpopt,int spopt)  {
         
         File f = new File(file.getName());
@@ -65,7 +70,7 @@ public class LayoutRefactor {
             //for every line in xml layout
             while((line = br.readLine()) != null) {
                 //if line has dp
-                if(line.matches("^.*dp.*$")) {
+                if(isEditable(line) && line.matches(regexDp)) {
                     //templine is beggining of string till before first ocurance of " char
                     String templine = line.substring(0,line.indexOf('"'));
                     //out is 44dp 
@@ -86,7 +91,6 @@ public class LayoutRefactor {
                 br.close();
             }
             
-            System.out.println(finalLine);
            
             PrintWriter out = new PrintWriter(file.getName());
             out.println(finalLine);
@@ -112,7 +116,7 @@ public class LayoutRefactor {
             //for every line in xml layout
             while((line = br.readLine()) != null) {
                 //if line has dp
-                if(line.matches("^.*dp.*$")) {
+                if(isEditable(line) &&  line.matches(regexDp)) {
                     //templine is beggining of string till before first ocurance of " char
                     String templine = line.substring(0,line.indexOf('"'));
                     //out is 44dp 
@@ -133,7 +137,6 @@ public class LayoutRefactor {
                 br.close();
             }
             
-            System.out.println(finalLine);
            
             PrintWriter out = new PrintWriter(file.getName());
             out.println(finalLine);
@@ -163,7 +166,7 @@ public class LayoutRefactor {
             //for every line in xml layout
             while((line = br.readLine()) != null) {
                 //if line has sp
-                if(line.matches("^.*sp.*$")) {
+                if(isEditable(line) &&  line.matches(regexSp)) {
                     //templine is beggining of string till before first ocurance of " char
                     String templine = line.substring(0,line.indexOf('"'));
                     //out is ex. 12sp 
@@ -176,7 +179,8 @@ public class LayoutRefactor {
                     
                     finalLine += templine + '"'+spvalue+"sp"+'"' + "\n";
                 } else {
-                    finalLine += line + "\n";
+                    String newline = removeSpecialCharFromStart(line);
+                    finalLine += newline + "\n";
                 }
             }
             
@@ -184,7 +188,6 @@ public class LayoutRefactor {
                 br.close();
             }
             
-            System.out.println(finalLine);
            
             PrintWriter out = new PrintWriter(file.getName());
             out.println(finalLine);
@@ -209,9 +212,9 @@ public class LayoutRefactor {
             //the final layout string output
             String finalLine = "";
             //for every line in xml layout
-            while((line = br.readLine()) != null) {
+            while((line = br.readLine()) != null) {            
                 //if line has sp
-                if(line.matches("^.*sp.*$")) {
+                if(isEditable(line) && line.matches(regexSp)) {
                     //templine is beggining of string till before first ocurance of " char
                     String templine = line.substring(0,line.indexOf('"'));
                     //out is ex. 12sp 
@@ -224,7 +227,8 @@ public class LayoutRefactor {
                     
                     finalLine += templine + '"'+spvalue+"sp"+'"' + "\n";
                 } else {
-                    finalLine += line + "\n";
+                    String newline = removeSpecialCharFromStart(line);
+                    finalLine += newline + "\n";
                 }
             }
             
@@ -232,7 +236,6 @@ public class LayoutRefactor {
                 br.close();
             }
             
-            System.out.println(finalLine);
            
             PrintWriter out = new PrintWriter(file.getName());
             out.println(finalLine);
@@ -248,7 +251,24 @@ public class LayoutRefactor {
     }
     
     
+    
+    private static boolean isEditable(String line) {
+        if(line.startsWith("#")) {
+            return false;
+        }
+        return true;
+    }
    
+    
+    private static String removeSpecialCharFromStart(String line) {
+        if(line.startsWith("#")) {
+            String newline = line.substring(1,line.length());
+            return newline;
+        }
+        return line;
+    }
+    
+    
     
     
 }

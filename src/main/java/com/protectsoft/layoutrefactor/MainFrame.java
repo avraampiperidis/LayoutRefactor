@@ -42,6 +42,7 @@ public class MainFrame extends javax.swing.JFrame {
         status = new javax.swing.JLabel();
         spoption = new javax.swing.JComboBox();
         spvalue = new javax.swing.JSpinner();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -67,6 +68,8 @@ public class MainFrame extends javax.swing.JFrame {
 
         spoption.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Add sp to all tags", "Remove sp from all tags" }));
 
+        jLabel1.setText("check with # at the beginning of lines that you dont want to change.the program will delete # automatically");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -87,8 +90,9 @@ public class MainFrame extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(dpvalue, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
-                            .addComponent(spvalue))))
-                .addContainerGap(342, Short.MAX_VALUE))
+                            .addComponent(spvalue)))
+                    .addComponent(jLabel1))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -105,11 +109,13 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(spoption, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(spvalue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addComponent(status)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(refactor)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -181,6 +187,7 @@ public class MainFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox dpoption;
     private javax.swing.JSpinner dpvalue;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JButton openfile;
     private javax.swing.JLabel path;
     private javax.swing.JToggleButton refactor;
