@@ -23,8 +23,8 @@ public class LayoutRefactor {
     
     static String filepath = "";
     
-    static private String regexDp = "^.*[\"][0-9]{1,3}dp[\"].*$";
-    static private String regexSp = "^.*[\"][0-9]{1,3}sp[\"].*$";
+    final static private String regexDp = "^.*[\"][0-9]{1,3}dp[\"].*$";
+    final static private String regexSp = "^.*[\"][0-9]{1,3}sp[\"].*$";
     
     
      public static String getFilePath() {
